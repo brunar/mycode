@@ -5,6 +5,8 @@ const PageCalculator = () => {
     "-": (left: number, right: number): number => left - right,
     "*": (left: number, right: number): number => left * right,
     "/": (left: number, right: number): number => left / right,
+    "**": (left: number, right: number): number => left ** right,
+    "%": (left: number, right: number): number => left % right,
   };
 
 //   type CalculatorProps = {
@@ -19,7 +21,7 @@ const PageCalculator = () => {
     right,
   }: {
     left: number;
-    operator: "+" | "-" | "*" | "/";
+    operator: keyof typeof operations;
     right: number;
   }) {
     const result = operations[operator](left, right);
@@ -35,10 +37,13 @@ const PageCalculator = () => {
   return (
     <div>
       <h1>Calculator</h1>
+      
       <Calculator left={1} operator="+" right={2} />
       <Calculator left={1} operator="-" right={2} />
       <Calculator left={1} operator="*" right={2} />
       <Calculator left={1} operator="/" right={2} />
+      <Calculator left={1} operator="**" right={2} />
+      <Calculator left={10} operator="%" right={100} />
     </div>
   );
 };
