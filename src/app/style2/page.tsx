@@ -1,12 +1,9 @@
 // Component BOX
 // Trim() is to cut last space (in the last box) like className="box "
 function Box({
-  className = "",
-  style = {},
   size,
   ...otherprops
 }: React.ComponentProps<"div"> & { size?: "small" | "medium" | "large" }) {
-
   console.log(otherprops);
   const sizeClassName = size ? `box--${size}` : "";
 
@@ -15,28 +12,30 @@ function Box({
     // Array [].filter(Boolean).join(' ') to remove extra spaces in between
 
     <div
-      className={['box', className, sizeClassName].filter(Boolean).join(' ')}
-      style={{ fontStyle: "italic", ...style }}
+      className={["box", otherprops.className, sizeClassName]
+        .filter(Boolean)
+        .join(" ")}
+      style={{ fontStyle: "italic", ...otherprops.style }}
       {...otherprops}
     />
   );
 }
 
 const smallBox = (
-  <Box className="box--small" style={{ backgroundColor: "lightblue" }}>
+  <Box size="small" style={{ backgroundColor: "lightblue" }}>
     small lightblue box
   </Box>
 );
 const mediumBox = (
   <Box
-    className="box--medium"
+    size="medium"
     style={{ fontStyle: "normal", backgroundColor: "pink" }}
   >
     medium pink box
   </Box>
 );
 const largeBox = (
-  <Box className="box--large" style={{ backgroundColor: "orange" }}>
+  <Box size="large" style={{ backgroundColor: "orange" }}>
     large orange box
   </Box>
 );
@@ -52,6 +51,7 @@ const PageStyle2 = () => {
         {sizelessColorlessBox}
       </div>
 
+      {/* this gives error con console because is using tailwind project */}
       <style>
         {`
             .box {
