@@ -3,13 +3,21 @@
 function Box({
   className = "",
   style = {},
-  ...props
-}: React.ComponentProps<"div">) {
+  size,
+  ...otherprops
+}: React.ComponentProps<"div"> & { size?: "small" | "medium" | "large" }) {
+
+  console.log(otherprops);
+  const sizeClassName = size ? `box--${size}` : "";
+
   return (
+    // className={`box ${className} ${sizeClassName}`.trim()}
+    // Array [].filter(Boolean).join(' ') to remove extra spaces in between
+
     <div
-      className={`box ${className}`.trim()}
+      className={['box', className, sizeClassName].filter(Boolean).join(' ')}
       style={{ fontStyle: "italic", ...style }}
-      {...props}
+      {...otherprops}
     />
   );
 }
