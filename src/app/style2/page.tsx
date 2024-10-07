@@ -10,13 +10,13 @@ function Box({
   return (
     // className={`box ${className} ${sizeClassName}`.trim()}
     // Array [].filter(Boolean).join(' ') to remove extra spaces in between
-
+    // filter(boolean) removes false strings
     <div
+      style={{ fontStyle: "italic", ...otherprops.style }}
+      {...otherprops}
       className={["box", otherprops.className, sizeClassName]
         .filter(Boolean)
         .join(" ")}
-      style={{ fontStyle: "italic", ...otherprops.style }}
-      {...otherprops}
     />
   );
 }
